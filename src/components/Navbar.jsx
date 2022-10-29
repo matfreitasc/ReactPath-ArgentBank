@@ -1,9 +1,33 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import { useState, useEffect } from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faUser } from '@fortawesome/free-solid-svg-icons';
+import { Link, useNavigate } from 'react-router-dom';
 import Logo from '../assets/images/argentBankLogo.png';
+import { useDispatch, useSelector } from 'react-redux';
+import { logOut, selectCurrentUser, setCredentials, setUser } from '../Pages/Profile/authSlice';
 
 const Navbar = () => {
-	const [isLoggedIn, setIsLoggedIn] = React.useState(false);
+	const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+	const dispatch = useDispatch();
+	const navigate = useNavigate();
+
+	const user = useSelector(selectCurrentUser);
+
+	useEffect(() => {
+		if (user.token) {
+			setIsLoggedIn(true);
+		} else {
+			setIsLoggedIn(false);
+		}
+	}, [user]);
+
+	const handleLogout = () => {
+		localStorage.removeItem('persist');
+		dispatch(logOut());
+		navigate('/');
+	};
+
 	return (
 		<nav className='main-nav'>
 			<Link className='main-nav-logo' to='/'>
@@ -12,21 +36,23 @@ const Navbar = () => {
 			</Link>
 			{!isLoggedIn ? (
 				<div>
-					<Link className='main-nav-item' to='sign-in'>
-						<i className='fa fa-user-circle'></i>
+					<Link className='main-nav-item icons-align' to='/login'>
+						{/* <FontAwesomeIcon icon={faUser} className='user-icon' /> */}
 						Sign In
 					</Link>
 				</div>
 			) : (
-				<div>
-					<Link class='main-nav-item' to='/user/'>
-						<i class='fa fa-user-circle'></i>
-						Tony
+				<div className='icons-align'>
+					<Link className='main-nav-item icons-align' to='/user/'>
+						<FontAwesomeIcon icon={faUser} className='user-icon' />
+						{user.firstName}
 					</Link>
-					<Link class='main-nav-item' to='/'>
-						<i class='fa fa-sign-out'></i>
-						Sign Out
-					</Link>
+					<div className='main-nav-item-button' to='/'>
+						<i className='fa fa-sign-out'></i>
+						<button className='main-nav-item-button' onClick={handleLogout}>
+							Sign Out
+						</button>
+					</div>
 				</div>
 			)}
 		</nav>
