@@ -43,7 +43,7 @@ const Navbar = () => {
 				</div>
 			) : (
 				<div className='icons-align'>
-					<Link className='main-nav-item icons-align' to='/user/'>
+					<Link className='main-nav-item icons-align' to='/profile'>
 						<FontAwesomeIcon icon={faUser} className='user-icon' />
 						{user.firstName}
 					</Link>

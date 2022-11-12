@@ -1,13 +1,15 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import Footer from '../../components/Footer';
 import Navbar from '../../components/Navbar';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faChevronDown, faChevronUp } from '@fortawesome/free-solid-svg-icons';
 
 function Transactions() {
 	const [transactions, setTransactions] = React.useState([
 		{
 			id: 1,
 			date: '2021-01-01',
-			description: 'Transaction 1',
+			description: 'Golden Sun Bakery',
 			amount: 10.99,
 			transactionType: 'debit',
 			category: 'groceries',
@@ -15,7 +17,7 @@ function Transactions() {
 		{
 			id: 2,
 			date: '2021-01-02',
-			description: 'Transaction 2',
+			description: 'Golden Sun Bakery',
 			amount: 20.99,
 			transactionType: 'debit',
 			category: 'groceries',
@@ -23,7 +25,7 @@ function Transactions() {
 		{
 			id: 3,
 			date: '2021-01-03',
-			description: 'Transaction 3',
+			description: 'Golden Sun Bakery',
 			amount: 30.99,
 			transactionType: 'debit',
 			category: 'groceries',
@@ -31,7 +33,7 @@ function Transactions() {
 		{
 			id: 4,
 			date: '2021-01-04',
-			description: 'Transaction 4',
+			description: 'Golden Sun Bakery',
 			amount: 40.99,
 			transactionType: 'debit',
 			category: 'groceries',
@@ -39,7 +41,7 @@ function Transactions() {
 		{
 			id: 5,
 			date: '2021-01-05',
-			description: 'Transaction 5',
+			description: 'Golden Sun Bakery',
 			amount: 50.99,
 			transactionType: 'debit',
 			category: 'groceries',
@@ -47,34 +49,72 @@ function Transactions() {
 		{
 			id: 6,
 			date: '2021-01-06',
-			description: 'Transaction 6',
+			description: 'Golden Sun Bakery',
 			amount: 60.99,
 			transactionType: 'debit',
 			category: 'groceries',
 		},
 	]);
 	const [details, setDetails] = React.useState(false);
+	const [open, setOpen] = React.useState(false);
+	const buttonRef = useRef(null);
+
+	let balance = '$2,082.79';
 	return (
 		<>
 			<Navbar />
 			<main className='main bg-dark'>
 				<section className='account-details'>
-					<h1>Account number</h1>
-					<h2>Current Ammout</h2>
-					<p>Availiable Balance</p>
+					<h1>Argent Bank Checking (×8349)</h1>
+					<h2>{balance}</h2>
+					<h3>Availiable Balance</h3>
 				</section>
 				<section className='transactions'>
-					{transactions.map((transaction) => {
-						return (
-							<div className='transaction'>
-								{details ? <i class='fa-solid fa-chevron-down'></i> : <i class='fa-solid fa-chevron-up'></i>}
-								<p>{transaction.date}</p>
-								<p>{transaction.description}</p>
-								<p>{transaction.amount}</p>
-								<p>{transaction.balance}</p>
-							</div>
-						);
-					})}
+					<table className='table' cellspacing='0'>
+						<thead className='table-header bg-dark'>
+							<tr>
+								<th></th>
+								<th className='th'>Date</th>
+								<th className='th'>Amount</th>
+								<th className='th'>Balance</th>
+								<th className='th'>Description</th>
+							</tr>
+						</thead>
+						<tbody>
+							{
+								// map over the transactions array and return a table row for each transaction
+								transactions.map((transaction) => {
+									return (
+										<>
+											<tr className='tr'>
+												<td>
+													{!open ? (
+														<FontAwesomeIcon icon={faChevronDown} onClick={() => setOpen(true)} />
+													) : (
+														<FontAwesomeIcon icon={faChevronUp} onClick={() => setOpen(!true)} />
+													)}
+												</td>
+												<td>
+													{
+														// format the date to be more readable
+														new Date(transaction.date).toLocaleDateString('en-US', {
+															month: 'long',
+															day: 'numeric',
+															year: 'numeric',
+														})
+													}
+												</td>
+												<td>{transaction.description}</td>
+												<td>{transaction.amount}</td>
+												<td>{balance}</td>
+											</tr>
+											{open && <div>something</div>}
+										</>
+									);
+								})
+							}
+						</tbody>
+					</table>
 				</section>
 			</main>
 
