@@ -374,10 +374,55 @@ table {
 	font-size: large;
 	background-color: white;
 }
-tbody tr details td {
-	padding: 10px;
+tbody tr {
 	font-size: 1.2rem;
 	font-weight: 500;
+	position: relative;
+}
+tbody tr td .icon {
+	color: rgb(76 91 107);
+	position: absolute;
+	left: 15px;
+	font-size: 1.3rem;
+	font-weight: bolder;
+	text-align: center;
+}
+
+tbody tr td {
+	padding: 1rem;
+}
+.extras {
+	text-align: start;
+	position: relative;
+	left: 55px;
+	font-size: 1rem;
+	font-weight: 600;
+	color: rgb(76 91 107);
+}
+.extras select {
+	position: relative;
+	-webkit-appearance: none;
+	-moz-appearance: none;
+	appearance: none;
+	border: none;
+	background-color: transparent;
+	font-size: 1rem;
+	font-weight: 550;
+	color: rgb(76 91 107);
+}
+.extras select::after {
+	outline: none;
+}
+
+.editableDiv {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	align-content: center;
+}
+.editableDiv p {
+	padding: 0 10px;
+	min-width: 10%;
 }
 
 @media (min-width: 720px) {

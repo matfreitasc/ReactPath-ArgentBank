@@ -1,11 +1,11 @@
 import React, { useRef } from 'react';
 import Footer from '../../components/Footer';
 import Navbar from '../../components/Navbar';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faChevronDown, faChevronUp } from '@fortawesome/free-solid-svg-icons';
+
+import TableRow from '../../components/TableRow';
 
 function Transactions() {
-	const [transactions, setTransactions] = React.useState([
+	const [transactions] = React.useState([
 		{
 			id: 1,
 			date: '2021-01-01',
@@ -55,11 +55,9 @@ function Transactions() {
 			category: 'groceries',
 		},
 	]);
-	const [details, setDetails] = React.useState(false);
-	const [open, setOpen] = React.useState(false);
-	const buttonRef = useRef(null);
 
 	let balance = '$2,082.79';
+
 	return (
 		<>
 			<Navbar />
@@ -73,7 +71,6 @@ function Transactions() {
 					<table className='table' cellspacing='0'>
 						<thead className='table-header bg-dark'>
 							<tr>
-								<th></th>
 								<th className='th'>Date</th>
 								<th className='th'>Amount</th>
 								<th className='th'>Balance</th>
@@ -84,33 +81,7 @@ function Transactions() {
 							{
 								// map over the transactions array and return a table row for each transaction
 								transactions.map((transaction) => {
-									return (
-										<>
-											<tr className='tr'>
-												<td>
-													{!open ? (
-														<FontAwesomeIcon icon={faChevronDown} onClick={() => setOpen(true)} />
-													) : (
-														<FontAwesomeIcon icon={faChevronUp} onClick={() => setOpen(!true)} />
-													)}
-												</td>
-												<td>
-													{
-														// format the date to be more readable
-														new Date(transaction.date).toLocaleDateString('en-US', {
-															month: 'long',
-															day: 'numeric',
-															year: 'numeric',
-														})
-													}
-												</td>
-												<td>{transaction.description}</td>
-												<td>{transaction.amount}</td>
-												<td>{balance}</td>
-											</tr>
-											{open && <div>something</div>}
-										</>
-									);
+									return <TableRow key={transaction.id} transaction={transaction} />;
 								})
 							}
 						</tbody>
