@@ -72,16 +72,16 @@ function Transactions() {
 						<thead className='table-header bg-dark'>
 							<tr>
 								<th className='th'>Date</th>
-								<th className='th'>Amount</th>
-								<th className='th'>Balance</th>
 								<th className='th'>Description</th>
+								<th className='th'>Ammount</th>
+								<th className='th'>Balance</th>
 							</tr>
 						</thead>
 						<tbody>
 							{
 								// map over the transactions array and return a table row for each transaction
 								transactions.map((transaction) => {
-									return <TableRow key={transaction.id} transaction={transaction} />;
+									return <TableRow key={transaction.id} transaction={transaction} balance={balance} />;
 								})
 							}
 						</tbody>

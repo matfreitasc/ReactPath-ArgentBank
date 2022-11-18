@@ -58,11 +58,11 @@ const TableRow = (props) => {
 				</td>
 				<td>{transaction.description}</td>
 				<td>${transaction.amount}</td>
-				<td>{transaction.transactionType}</td>
+				<td>{props.balance}</td>
 			</tr>
 			{open && (
 				<div className='extras'>
-					<p>Transaction Type: Eletronic</p>
+					<p>Transaction Type: {transaction.transactionType}</p>
 					<p>
 						Category:{' '}
 						<select defaultValue='Food'>
