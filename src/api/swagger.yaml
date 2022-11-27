@@ -151,10 +151,10 @@ paths:
           description: Attach Bearer JWT refresh token
           type: string
           required: true
-          
+
         - in: path
           name: id
-          description: ID of pet to fetch
+          description: ID of the transaction
           required: true
           type: integer
           format: int64
@@ -166,13 +166,13 @@ paths:
           description: User transaction updated successully
           schema:
             $ref: '#/definitions/Transactions'
-        '204': 
+        '204':
           description: No Content
         '404':
           description: Not Found
         '500':
           description: Internal Server Error
-     
+
 securityDefinitions:
   Bearer:
     type: apiKey
