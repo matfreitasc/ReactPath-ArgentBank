@@ -48,7 +48,7 @@ const TableRow = (props) => {
 	return (
 		<>
 			<tr ref={dropdownRef}>
-				<td>
+				<td className='date'>
 					{open ? (
 						<FontAwesomeIcon icon={faChevronUp} onClick={() => setIsOpen(!open)} className='icon' />
 					) : (
@@ -58,7 +58,7 @@ const TableRow = (props) => {
 				</td>
 				<td>{transaction.description}</td>
 				<td>${transaction.amount}</td>
-				<td>{props.balance}</td>
+				<td className='balanceRow'>{props.balance}</td>
 			</tr>
 			{open && (
 				<div className='extras'>

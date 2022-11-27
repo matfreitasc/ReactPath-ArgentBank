@@ -374,6 +374,7 @@ table {
 	font-size: large;
 	background-color: white;
 }
+
 tbody tr {
 	font-size: 1.2rem;
 	font-weight: 500;
@@ -436,5 +437,62 @@ tbody tr td {
 
 	.transaction-button {
 		width: 200px;
+	}
+}
+
+@media (max-width: 721px) {
+	table {
+		font-size: small;
+		background-color: white;
+		margin-bottom: 20px;
+	}
+	tbody tr {
+		font-size: 1rem;
+		font-weight: 500;
+		position: relative;
+		box-shadow: rgba(76, 91, 107, 0.485) 1px 1px 1px 1px;
+	}
+	tbody tr td .icon {
+		color: rgb(76 91 107);
+		position: absolute;
+		left: 15px;
+		font-size: 1rem;
+		font-weight: bolder;
+		text-align: center;
+	}
+	.date {
+		padding-left: 2rem;
+	}
+	tbody tr td {
+		padding: 0.5rem;
+	}
+	.transactions {
+		width: 100%;
+		margin: 0 auto;
+	}
+	.account-details {
+		display: flex;
+		flex-direction: column;
+		gap: 0px;
+		width: 90%;
+		margin: 0 auto;
+		background-color: white;
+		border: gray 1px solid;
+		font-size: 0.8rem;
+		font-weight: bold;
+	}
+	.account-details h2 {
+		margin: 0;
+		padding: 0;
+		font-size: 3rem;
+		font-weight: bold;
+		text-align: center;
+	}
+	.balanceRow,
+	.balanceColumn {
+		display: none;
+	}
+	.extras {
+		left: 25px;
 	}
 }

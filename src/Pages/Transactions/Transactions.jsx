@@ -74,7 +74,7 @@ function Transactions() {
 								<th className='th'>Date</th>
 								<th className='th'>Description</th>
 								<th className='th'>Ammount</th>
-								<th className='th'>Balance</th>
+								<th className='th balanceColumn'>Balance</th>
 							</tr>
 						</thead>
 						<tbody>
